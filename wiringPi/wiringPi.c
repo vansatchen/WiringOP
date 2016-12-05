@@ -1356,7 +1356,7 @@ int isH3(void)
   if (wiringPiDebug)
     printf ("piboardRev: Hardware string: %s\n", line) ;
 	
-	if (strstr(line,"sun8i") != NULL)			//guenter von sun7i auf sun8i
+	if (strstr(line,"sun50i") != NULL)			//guenter von sun7i auf sun8i
 	{
 		if (wiringPiDebug)
 		printf ("Hardware:%s\n",line) ;
@@ -1387,7 +1387,7 @@ int piBoardRev (void)
   {
 	version = BPRVER;
 		if (wiringPiDebug)
-			printf ("piboardRev:  %d\n", version) ;
+			printf ("piboardRevH3:  %d\n", version) ;
 		return BPRVER ;
   }
  /*end 2014.09.18*/
@@ -1481,8 +1481,13 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *overVolted)
 
   fclose (cpuFd) ;
 
-  if (strncmp (line, "Revision", 8) != 0)
-    piBoardRevOops ("No \"Revision\" line") ;
+  if (strncmp (line, "Revision", 8) != 0){
+    if(isH3()){
+      strcpy(line,"0000") ;
+    }else{
+      piBoardRevOops ("No \"Revision\" line") ;
+    }
+  }
 
 // Chomp trailing CR/NL
 
