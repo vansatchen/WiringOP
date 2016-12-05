@@ -1334,7 +1334,7 @@ int isA20(void)
 
 
 /*add for H3 guenter*/
-int isH3(void)
+int isH5(void)
 {
   FILE *cpuFd ;
   char line [120] ;
@@ -1383,7 +1383,7 @@ int piBoardRev (void)
   static int  boardRev = -1 ;
 
 /*add for orange pi guenter */
-  if(isH3())			//guenter if(isA20())
+  if(isH5())			//guenter if(isA20())
   {
 	version = BPRVER;
 		if (wiringPiDebug)
@@ -1482,7 +1482,7 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *overVolted)
   fclose (cpuFd) ;
 
   if (strncmp (line, "Revision", 8) != 0){
-    if(isH3()){
+    if(isH5()){
       strcpy(line,"0000") ;
     }else{
       piBoardRevOops ("No \"Revision\" line") ;
@@ -2698,7 +2698,7 @@ int wiringPiISR (int pin, int mode, void (*function)(void))
 			printf("[%s:L%d] the pin:%d is invalid, please check it over!\n", __func__,  __LINE__, pin);
 			return -1;
 		}
-		if(isH3()){
+		if(isH5()){
 			// All PA- and PG-pins support interrupts, the others don't
 			if(bcmGpioPin > 31 && bcmGpioPin < 192)
 				return wiringPiFailure (WPI_FATAL, "wiringPiISR: the specified pin does not support interrupts on this board (Allwinner H3) (%d,%d)\n", pin,bcmGpioPin) ;
