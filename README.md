@@ -1,7 +1,7 @@
-# wiringBP README
+# wiringOP README
 
 This is a modified WiringPi for OrangePi. We call it WiringOP.
-Test fo Orangepi pc
+Test fo Orangepi Zero 2 Plus
 
 ## Download
 ### For Orangepi Pi
